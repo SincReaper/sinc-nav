@@ -1,0 +1,40 @@
+{
+  "hash": "48ed0cc0",
+  "configHash": "f072a386",
+  "lockfileHash": "95d811e4",
+  "browserHash": "f57869e7",
+  "optimized": {
+    "vue": {
+      "src": "../../../node_modules/.pnpm/vue@3.5.25/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "df555ffd",
+      "needsInterop": false
+    },
+    "vitepress > @vue/devtools-api": {
+      "src": "../../../node_modules/.pnpm/@vue+devtools-api@7.7.9/node_modules/@vue/devtools-api/dist/index.js",
+      "file": "vitepress___@vue_devtools-api.js",
+      "fileHash": "bcbcf69f",
+      "needsInterop": false
+    },
+    "vitepress > @vueuse/core": {
+      "src": "../../../node_modules/.pnpm/@vueuse+core@12.8.2/node_modules/@vueuse/core/index.mjs",
+      "file": "vitepress___@vueuse_core.js",
+      "fileHash": "3f66b98b",
+      "needsInterop": false
+    },
+    "lunar-javascript": {
+      "src": "../../../node_modules/.pnpm/lunar-javascript@1.7.7/node_modules/lunar-javascript/index.js",
+      "file": "lunar-javascript.js",
+      "fileHash": "f61592c5",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-EO4NMZKD": {
+      "file": "chunk-EO4NMZKD.js"
+    },
+    "chunk-BUSYA2B4": {
+      "file": "chunk-BUSYA2B4.js"
+    }
+  }
+}

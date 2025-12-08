@@ -1,0 +1,23 @@
+{
+  "name": "sinc-nav",
+  "version": "1.0.0",
+  "description": "My NAS Navigation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "unocss": "^0.58.0",
+    "vitepress": "^1.0.0",
+    "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "lunar-javascript": "^1.7.7"
+  }
+}

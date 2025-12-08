@@ -1,0 +1,4 @@
+{
+  "framework": "vitepress",
+  "staticDir": ".vitepress/dist"
+}
