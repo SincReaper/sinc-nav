@@ -2,8 +2,10 @@ import { defineConfig } from 'vitepress'
 import Unocss from 'unocss/vite'
 
 export default defineConfig({
-  title: "NAS Navigation",
-  
+  title: "十三の导航页",
+  head: [
+    ['link', { rel: 'icon', href: '/assets/home/avatar.webp' }],
+  ],
   vite: {
     plugins: [
       Unocss() 
