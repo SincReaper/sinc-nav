@@ -5,21 +5,45 @@ import { Lunar } from 'lunar-javascript'
 import NavGrid from './NavGrid.vue'
 import HomeFooter from './HomeFooter.vue'
 
-// --- 1. 配置读取 (升级版) ---
+// --- 辅助函数：随机获取 ---
+const getRandomItem = (item) => {
+  if (Array.isArray(item) && item.length > 0) {
+    // 如果是数组，随机取一个
+    const index = Math.floor(Math.random() * item.length)
+    return item[index]
+  }
+  // 如果是字符串或空的，直接返回
+  return item || ''
+}
+
+// --- 1. 配置读取 ---
 const { theme } = useData()
 const pageConfig = computed(() => {
   const config = theme.value.startPage || {}
   return {
     title: config.title || '十三の导航页',
-    bgImage: config.bgImage || '',
-    bgVideo: config.bgVideo || '' // 读取视频配置
+    // 这里保持原始数据（可能是字符串，也可能是数组）
+    bgImageRaw: config.bgImage,
+    bgImageMobileRaw: config.bgImageMobile,
+    bgVideo: config.bgVideo || '' 
   }
 })
 
-// 计算背景样式：如果有视频，就不设置背景图，否则显示图片
+// --- 2. 核心逻辑：计算最终显示的图片 ---
 const wrapperStyle = computed(() => {
+  // 视频优先级最高
   if (pageConfig.value.bgVideo) return {}
-  return { backgroundImage: `url(${pageConfig.value.bgImage})` }
+
+  // 1. 获取电脑端图片
+  const pcImg = getRandomItem(pageConfig.value.bgImageRaw)
+  
+  // 2. 获取手机端图片 (如果没有配置手机端，就去电脑端池子里随机抽一张)
+  const mobileImg = getRandomItem(pageConfig.value.bgImageMobileRaw || pageConfig.value.bgImageRaw)
+
+  return { 
+    '--bg-pc': `url(${pcImg})`,
+    '--bg-mobile': `url(${mobileImg})`
+  }
 })
 
 // --- 状态定义 ---
@@ -81,6 +105,7 @@ const updateTime = () => {
   } catch (e) {}
 }
 
+let timer = null
 onMounted(() => {
   updateTime()
   timer = setInterval(updateTime, 1000)
@@ -162,39 +187,42 @@ onUnmounted(() => {
 .start-page-wrapper {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
-  /* 图片背景属性 (视频模式下会被覆盖) */
+  
+  /* 电脑端默认背景变量 */
+  background-image: var(--bg-pc);
+  
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 100;
-  /* 确保背景色深一点，防止视频加载前闪白 */
   background-color: #0f172a; 
+  /* 增加过渡效果，让图片切换稍微柔和一点（可选） */
+  transition: background-image 0.3s;
 }
 
-/* 2. 视频背景样式 (关键) */
+/* 2. 视频背景样式 */
 .bg-video {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  object-fit: cover; /* 保证视频填满屏幕不拉伸 */
-  z-index: 0; /* 在最底层 */
+  object-fit: cover;
+  z-index: 0;
 }
 
-/* 3. 背景遮罩 (确保文字清晰) */
+/* 3. 背景遮罩 */
 .start-page-wrapper::before { 
   content: ''; 
   position: absolute; 
   inset: 0; 
-  /* 调整这个透明度(0.3)来控制视频亮度 */
   background: rgba(0, 0, 0, 0.3); 
-  z-index: 1; /* 在视频之上，内容之下 */
-  pointer-events: none; /* 让点击事件穿透 */
+  z-index: 1; 
+  pointer-events: none;
 }
 
 /* 4. 内容容器 */
 .scroll-container {
   position: relative;
-  z-index: 10; /* 确保内容在遮罩之上 */
+  z-index: 10;
   width: 100%;
   height: 100%;
   overflow-y: auto;
@@ -242,6 +270,11 @@ onUnmounted(() => {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 768px) {
+  /* 手机端切换变量 */
+  .start-page-wrapper {
+    background-image: var(--bg-mobile) !important;
+  }
+
   .info-header { flex-direction: column; text-align: center; }
   .divider { width: 60px; height: 2px; margin: 20px 0; }
   .time-group { text-align: center; }
