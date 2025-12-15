@@ -44,9 +44,10 @@ export default defineConfig({
 
     // 👇 2. 页脚配置
     footer: {
+      // @ts-ignore
       author: "十三",
-      siteName: "nav.99600000.xyz",
-      siteUrl: "https://nav.99600000.xyz",
+      siteName: "nav.nw177.cn",
+      siteUrl: "https://nav.nw177.cn",
       poem: "终不似 少年游"
     },
 
