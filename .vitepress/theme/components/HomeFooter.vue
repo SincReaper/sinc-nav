@@ -11,7 +11,7 @@ const footerConfig = computed(() => {
   const conf = theme.value.footer || {}
   return {
     author: conf.author || '十三',
-    siteName: conf.siteName || 'nav.99600000.xyz',
+    siteName: conf.siteName || 'nav.nw177.cn',
     siteUrl: conf.siteUrl || '#',
     poem: conf.poem || '终不似 少年游'
   }
@@ -27,6 +27,11 @@ const footerConfig = computed(() => {
         · 保留所有权利
       </p>
       <p class="poem">{{ footerConfig.poem }}</p>
+      <p align="center">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color: #666; text-decoration: none;">
+          滇ICP备2025075617号-1
+        </a>
+      </p>      
     </div>
   </footer>
 </template>

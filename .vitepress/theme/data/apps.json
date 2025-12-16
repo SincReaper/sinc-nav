@@ -27,6 +27,18 @@
         "url": "https://cloud.tencent.com/login?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Fedgeone"
       },
       {
+        "name": "ESA",
+        "desc": "阿里 ESA",
+        "icon": "/assets/icon/ESA.png",
+        "url": "https://dnsnext.console.aliyun.com/authoritative/domains/nw177.cn/recordse"
+      },
+      {
+        "name": "七牛云",
+        "desc": "对象存储",
+        "icon": "/assets/icon/QiNiu.png",
+        "url": "https://portal.qiniu.com/kodo/bucket?ref=www.qiniu.com"
+      },    
+      {
         "name": "Gmail",
         "desc": "谷歌邮箱",
         "icon": "/assets/icon/Gmail.png",
