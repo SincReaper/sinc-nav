@@ -26,12 +26,12 @@ const footerConfig = computed(() => {
         <a :href="footerConfig.siteUrl" target="_blank" class="link">{{ footerConfig.siteName }}</a> 
         · 保留所有权利
       </p>
-      <p class="poem">{{ footerConfig.poem }}</p>
+      <!-- <p class="poem">{{ footerConfig.poem }}</p>
       <p align="center">
         <a href="https://beian.miit.gov.cn/" target="_blank" style="color: #666; text-decoration: none;">
           滇ICP备2025075617号-1
         </a>
-      </p>      
+      </p>       -->
     </div>
   </footer>
 </template>
